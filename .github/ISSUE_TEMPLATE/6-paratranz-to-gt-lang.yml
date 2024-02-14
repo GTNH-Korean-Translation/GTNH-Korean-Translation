@@ -1,0 +1,13 @@
+---
+name: ParaTranz의 데이터를 사용하여 GregTech.lang을 생성
+description: ParaTranz의 데이터를 사용하여 GregTech.lang을 생성하고, 업데이트용 PR을 생성합니다. (내부용)
+
+labels: [ '자동화:paratranz→gt-lang' ]
+
+body:
+  - type: input
+    id: branch
+    attributes:
+      label: branch 지정
+    validations:
+      required: true

@@ -1,0 +1,14 @@
+---
+name: ParaTranz의 언어 파일을 사용하여 퀘스트의 언어 파일을 생성
+
+description: ParaTranz의 언어 파일을 사용하여 퀘스트의 언어 파일을 생성하고, 업데이트용 PR을 생성합니다. (내부용)
+
+labels: [ '자동화:paratranz→questbook' ]
+
+body:
+  - type: input
+    id: branch
+    attributes:
+      label: branch 지정
+    validations:
+      required: true

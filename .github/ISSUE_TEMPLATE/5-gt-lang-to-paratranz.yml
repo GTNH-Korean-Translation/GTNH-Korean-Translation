@@ -1,0 +1,13 @@
+---
+name: GregTech.lang의 언어파일을 분석하여 ParaTranz에 반영
+description: GregTech.lang의 언어파일을 분석하여 ParaTranz에 반영하는 작업을 수행합니다. (내부용)
+
+labels: [ '자동화:gt-lang→paratranz' ]
+
+body:
+  - type: input
+    id: gt-lang-url
+    attributes:
+      label: GregTech.lang의 URL
+    validations:
+      required: true

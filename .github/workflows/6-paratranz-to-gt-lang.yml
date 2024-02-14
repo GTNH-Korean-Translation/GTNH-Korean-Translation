@@ -1,0 +1,84 @@
+name: ParaTranz To GT Lang
+
+on:
+  issues:
+    types: [ opened ]
+
+env:
+  PARATRANZ_TOKEN: ${{ secrets.PARATRANZ_TOKEN }}
+  PARATRANZ_PROJECT_ID: ${{ secrets.PARATRANZ_PROJECT_ID }}
+  TARGET_LANG: ko_KR
+
+jobs:
+  check-and-parse-issue:
+    if: contains(github.event.issue.labels.*.name, '자동화:paratranz→gt-lang')
+    name: Check And Parse Issue
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout GTNH-Korean-Translation/GTNH-translation-compare
+        uses: actions/checkout@v3
+        with:
+          repository: GTNH-Korean-Translation/GTNH-translation-compare
+          ref: main
+      - name: Ensure Dependencies
+        uses: ./.github/actions/ensure-dependencies
+      - name: Run Script
+        id: check-and-parse-issue
+        env:
+          GITHUB_ISSUE: ${{ toJSON(github.event.issue) }}
+          VALID_LABEL: 자동화:paratranz→gt-lang
+          VALID_USER: ${{ github.repository_owner }}
+        run: |
+          poetry run python main.py parse-issue paratranz-to-gt-lang
+    outputs:
+      passed: ${{ steps.check-and-parse-issue.outputs.passed }}
+      branch: ${{ steps.check-and-parse-issue.outputs.branch }}
+
+  close-issue:
+    name: Close Issue
+    needs: check-and-parse-issue
+    if: ${{ needs.check-and-parse-issue.outputs.passed != 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Close Issue
+        run: gh issue close "${ISSUE_URL}" --comment "이 템플릿은 내부용으로, 자동으로 닫혔습니다."
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+
+  paratranz-to-gt-lang:
+    name: ParaTranz To GT Lang
+    needs: check-and-parse-issue
+    if: ${{ needs.check-and-parse-issue.outputs.passed == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout GTNH-Korean-Translation/GTNH-translation-compare
+        uses: actions/checkout@v3
+        with:
+          repository: GTNH-Korean-Translation/GTNH-translation-compare
+          ref: main
+      - name: Ensure Dependencies
+        uses: ./.github/actions/ensure-dependencies
+      - name: Checkout Work Repo
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ needs.check-and-parse-issue.outputs.branch }}
+          path: '.repo'
+      - name: Run Script
+        run: >-
+          poetry run python main.py action paratranz-to-gt-lang
+          --repo-path='.repo'
+          --issue='${{ github.event.issue.number }}'
+          --commit-message='[자동화] GregTech.lang을 업데이트'
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v4.0.0
+        with:
+          title: '[자동화] GregTech.lang을 업데이트'
+          labels: |
+            자동화:paratranz→gt-lang
+          body: |
+            #${{ github.event.issue.number }} 에 의해 트리거되었습니다
+          base: ${{ needs.check-and-parse-issue.outputs.branch }}
+          branch: automation/compare/${{ github.event.issue.number }}
+          path: '.repo'
+          delete-branch: true

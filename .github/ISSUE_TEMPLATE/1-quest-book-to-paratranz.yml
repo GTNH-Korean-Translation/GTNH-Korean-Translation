@@ -1,0 +1,15 @@
+---
+name: 퀘스트의 언어 파일을 분석하여 ParaTranz 반영.
+
+description: 퀘스트의 언어 파일을 분석하여 ParaTranz에 반영하는 작업을 수행합니다. (내부용)
+
+labels: [ '자동화:questbook→paratranz' ]
+
+body:
+  - type: input
+    id: commit-sha
+    attributes:
+      label: 퀘스트 언어 파일 commit id
+      value: 'master'
+    validations:
+      required: false

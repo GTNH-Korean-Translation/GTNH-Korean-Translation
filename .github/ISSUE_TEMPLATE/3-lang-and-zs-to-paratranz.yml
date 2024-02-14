@@ -1,0 +1,14 @@
+---
+name: mod의 언어파일을 분석하여 ParaTranz에 반영
+
+description: mod의 언어파일을 분석하여 ParaTranz에 반영하는 작업을 수행합니다. (내부용)
+
+labels: [ '자동화:lang+zs→paratranz' ]
+
+body:
+  - type: input
+    id: modpack-url
+    attributes:
+      label: modpack의 URL
+    validations:
+      required: true
