@@ -5,13 +5,13 @@
 2024/02/15 프로젝트시작
 
 ## 사용법
-1. [Latest]{https://github.com/GTNH-Korean-Translation/GTNH-Korean-Translation/releases/tag/latest}에서 최신 Nightly 빌드를 다운로드
+1. [Latest](https://github.com/GTNH-Korean-Translation/GTNH-Korean-Translation/releases/tag/latest)에서 최신 Nightly 빌드를 다운로드
 2. 다운로드한 파일을 압축해제하여 본인이 GTNH를 설치한 프로필(인스턴스)폴더에 덮어쓰기
 
 
 ## Nightly Build
 
-아직 번역이 완료되지않았습니다. [Latest]{https://github.com/GTNH-Korean-Translation/GTNH-Korean-Translation/releases/tag/latest}에서 최신 Nightly 빌드를 확인하실 수 있습니다.
+아직 번역이 완료되지않았습니다. [Latest](https://github.com/GTNH-Korean-Translation/GTNH-Korean-Translation/releases/tag/latest)에서 최신 Nightly 빌드를 확인하실 수 있습니다.
 
 
 ## Credit
