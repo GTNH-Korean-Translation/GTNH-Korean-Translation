@@ -27,3 +27,7 @@
 [ParaTranz](https://paratranz.cn/projects/9359)에서 번역작업을 진행중입니다. 누구나 환영합니다!
 
 ## Contributer
+
+[KTurret](https://github.com/KTurret)
+[UMFactorius](https://github.com/UMFactorius)
+[RielChan](https://github.com/RielChan)
