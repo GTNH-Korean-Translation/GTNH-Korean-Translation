@@ -32,3 +32,5 @@
 [UMFactorius](https://github.com/UMFactorius)
 [RielChan](https://github.com/RielChan)
 [myoun](https://github.com/myoun)
+[QrestHateCarrot](https://github.com/QrestHateCarrot)
+[yuhan3958](https://github.com/yuhan3958)
