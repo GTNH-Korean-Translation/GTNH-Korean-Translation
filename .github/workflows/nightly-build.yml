@@ -58,12 +58,12 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: GTNH-Japanese-Translation-Nightly-${{ steps.date.outputs.today }}
+          name: GTNH-Korean-Translation-Nightly-${{ steps.date.outputs.today }}
           path: ./temp/
       - name: Zip
         run: |
           cd temp
-          zip -r ../assets/GTNH-Japanese-Translation-Nightly-${{ steps.date.outputs.today }}.zip ./*
+          zip -r ../assets/GTNH-Korean-Translation-Nightly-${{ steps.date.outputs.today }}.zip ./*
           cd ..
       - name: Push tag
         run: |
@@ -83,5 +83,5 @@ jobs:
           body: |
             사용법은 README를 참조하세요.
           files: |
-            ./assets/GTNH-Japanese-Translation-Nightly-${{ steps.date.outputs.today }}.zip
+            ./assets/GTNH-Korean-Translation-Nightly-${{ steps.date.outputs.today }}.zip
           token: ${{ secrets.GITHUB_TOKEN }}
